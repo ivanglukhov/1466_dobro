@@ -1,6 +1,6 @@
 import sqlite3
 
-conn = sqlite3.connect('database.db')
+conn = sqlite3.connect('database.db', check_same_thread=False)
 cursor = conn.cursor()
 
 cursor.execute('''
@@ -20,7 +20,7 @@ cursor.execute('''
 conn.commit()
 
 cursor.execute('''
-    CREATE TABLE IF NOT EXISTS advert (
+    CREATE TABLE IF NOT EXISTS user (
          id INTEGER PRIMARY KEY,
          role VARCHAR,
          adress VARCHAR,
@@ -32,3 +32,25 @@ cursor.execute('''
 ''')
 
 conn.commit()
+
+def get_all_adverts():
+    cursor.execute('''
+        SELECT * FROM advert
+    ''')
+    rows = cursor.fetchall()
+    return rows
+
+def get_advert(id):
+    cursor.execute('''
+        SELECT * FROM advert
+        WHERE id='''+str(id))
+    rows = cursor.fetchall()
+    return rows[0]
+
+#cursor.execute('''
+#    INSERT INTO advert VALUES
+#    (4, "test", "test", "test", 0, 0, "test", 0, 0)
+#''')
+#conn.commit()
+
+
