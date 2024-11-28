@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="column">
+    {% for adv in advs %}
+        <div class="adv">
+            <div class="header">{{ adv.header }}</div>
+            <div class="adress">{{ adv.adress }}</div>
+            <div class="description">{{ adv.description }}</div>
+            <div class="service_mode">{{ adv.service_mode }}</div>
+            <div class="creator">{{ adv.creator }}</div>
+            <div class="image">{{ adv.image }}</div>
+
+            <a href="/advs/{{ adv.id }}" >Перейти к объявлению</a>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
